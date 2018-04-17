@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	// Funcion que permite la transicion entre escenas
+	// Recibe como parametro el nombre de la escena a cargar
+	public void cargarEscena (string escena) {
+		Debug.Log(string.Format("Se intenta cargar la escena: {0}", escena));
 		SceneManager.LoadScene(escena);
 	}
 	
