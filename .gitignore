@@ -1,4 +1,5 @@
 *.apk
+*.csproj
 Temp/
 Library/
 obj/

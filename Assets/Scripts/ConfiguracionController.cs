@@ -9,9 +9,9 @@ public class ConfiguracionController : MonoBehaviour {
 	public InputField inputEdad;
 
 	public void setConfiguracionJugador(){
-		Debug.Log(inputNombre.text);
-		Debug.Log(inputEdad.text);
-		Jugador.jugador.nombre = inputNombre.text;
-		Jugador.jugador.edad = int.Parse(inputEdad.text);
+		Jugador.jugador.setDatos(
+			inputNombre.text,
+			int.Parse(inputEdad.text)
+		);
 	}
 }

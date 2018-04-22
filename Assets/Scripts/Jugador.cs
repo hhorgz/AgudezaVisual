@@ -5,8 +5,9 @@ using UnityEngine;
 public class Jugador {
 
 	public static Jugador jugador = new Jugador();
-	public string nombre;
-	public int edad;
+	public string nombre = "placeholder";
+	public int edad = 0;
+	public bool estado = false;
 
 	public string getNombre(){
 		return nombre;
@@ -14,6 +15,12 @@ public class Jugador {
 
 	public int getEdad(){
 		return edad;
+	}
+
+	public void setDatos(string nombre, int edad){
+		this.nombre = nombre;
+		this.edad = edad;
+		this.estado = true;
 	}
 
 	public void imprimirAtributos(){
