@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GoogleVR\Scripts\EventSystem\InputModule\GvrPointerInputModule.cs">
+    <Files>
+      <File FileName="Assets\Scripts\InputController.cs" Line="20" Column="33" />
+      <File FileName="Assets\GoogleVR\Demos\Scripts\HelloVR\ObjectController.cs" Line="31" Column="3" />
+      <File FileName="Assets\GoogleVR\Scripts\EventSystem\InputModule\GvrPointerInputModule.cs" Line="186" Column="4" />
+      <File FileName="Assets\GoogleVR\Scripts\Cardboard\GvrReticlePointer.cs" Line="86" Column="38" />
+      <File FileName="Assets\GoogleVR\Scripts\EventSystem\InputModule\GvrEventExecutor.cs" Line="26" Column="1" />
+      <File FileName="Assets\GoogleVR\Scripts\Controller\GvrControllerInput.cs" Line="484" Column="43" />
+      <File FileName="Assets\GoogleVR\Scripts\Controller\ArmModel\GvrArmModel.cs" Line="209" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\Documentos\USAC\Tesis\Aplicacion\AgudezaVisual\Assets\GoogleVR\Scripts\EventSystem\InputModule\GvrEventExecutor.cs" line="26" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
