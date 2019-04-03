@@ -1,5 +1,7 @@
 *.apk
 *.csproj
+*.meta
 Temp/
 Library/
 obj/
+.vs/
