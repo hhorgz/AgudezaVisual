@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Jugador {
+//	private string _nombre = null;
+//	private int _edad = 0;
+	private string _nombre = "dummy";
+	private int _edad = 100;
 
 	public static Jugador jugador = new Jugador();
-	public string nombre = "placeholder";
-	public int edad = 0;
-	public bool estado = false;
-
-	public string getNombre(){
-		return nombre;
+	public string Nombre {
+		get { return _nombre; }
+	}
+	public int Edad {
+		get{ return _edad; }
+	}
+	public bool IsEmpty {
+		get{
+			if (string.IsNullOrEmpty (Nombre) || Edad == 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 
-	public int getEdad(){
-		return edad;
+	public bool setDatos(string nombre, int edad){
+		if (string.IsNullOrEmpty (nombre) || edad <= 0) {
+			return false;
+		} else {
+			_nombre = nombre.ToUpper();
+			_edad = edad;
+			return true;
+		}
 	}
 
-	public void setDatos(string nombre, int edad){
-		this.nombre = nombre;
-		this.edad = edad;
-		this.estado = true;
+	public override string ToString ()
+	{
+		return string.Format ("[Jugador: Nombre={0}, Edad={1}, IsEmpty={2}]", Nombre, Edad, IsEmpty);
 	}
-
-	public void imprimirAtributos(){
-		Debug.Log("===== JUGADOR =====");
-		Debug.Log("Nombre => " + nombre);
-		Debug.Log("Edad => " + edad);
-	}
-	
 }
