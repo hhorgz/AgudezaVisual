@@ -157,9 +157,10 @@
      <Compile Include="Assets\Scripts\AdvertenciaController.cs" />
      <Compile Include="Assets\Scripts\ConfiguracionController.cs" />
      <Compile Include="Assets\Scripts\HomeController.cs" />
-     <Compile Include="Assets\Scripts\InputController.cs" />
      <Compile Include="Assets\Scripts\Jugador.cs" />
-     <Compile Include="Assets\Scripts\SwitchToVRController.cs" />
+     <Compile Include="Assets\Scripts\VR\InputController.cs" />
+     <Compile Include="Assets\Scripts\VR\OptotipoController.cs" />
+     <Compile Include="Assets\Scripts\VR\SwitchToVRController.cs" />
      <None Include="Assets\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
      <None Include="Assets\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
      <None Include="Assets\GoogleVR\Shaders\GvrController.shader" />
