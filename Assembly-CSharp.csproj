@@ -155,11 +155,14 @@
      <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrVRHelpers.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
      <Compile Include="Assets\Scripts\AdvertenciaController.cs" />
+     <Compile Include="Assets\Scripts\Configuracion\DificultadEnumerator.cs" />
+     <Compile Include="Assets\Scripts\Configuracion\OptotipoEnum.cs" />
      <Compile Include="Assets\Scripts\ConfiguracionController.cs" />
      <Compile Include="Assets\Scripts\HomeController.cs" />
      <Compile Include="Assets\Scripts\Jugador.cs" />
      <Compile Include="Assets\Scripts\VR\InputController.cs" />
      <Compile Include="Assets\Scripts\VR\OptotipoController.cs" />
+     <Compile Include="Assets\Scripts\VR\OptotipoFactory.cs" />
      <Compile Include="Assets\Scripts\VR\SwitchToVRController.cs" />
      <None Include="Assets\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
      <None Include="Assets\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
