@@ -9,23 +9,16 @@ namespace AgudezaVisual.VR
 	{
 		
 		private OptotipoEnum[] optotipos;
+		private readonly float MINUTOS_DE_ARCO_20_20 = 5f;
+		private readonly int MINUTOS_DE_ARCO_RADIAN = 3438;
+		private readonly int TAMANO_AREA_OPTOTIPO = 5;
+		private readonly int TAMANO_AREA_OPCION = 7;
+
 		public List<GameObject> opciones;
 
 		public void Start ()
 		{
-//			Renderer render = opcion1.GetComponent<Renderer> ();
-//			Material material = Resources.Load ("Materials/e_snellen", typeof(Material)) as Material;
-//			render.material = material;
-//
-//			OptotipoController controller = opcion1.GetComponent<OptotipoController> ();
-//			controller.inactiveMaterial = material;
-//			controller.gazedAtMaterial = Resources.Load ("Materials/e_snellen_seleccionado", typeof(Material)) as Material;
 			DefinirOpciones ();
-		}
-
-		private void SetOpcionesVR ()
-		{ 
-			
 		}
 
 		/**
@@ -78,6 +71,7 @@ namespace AgudezaVisual.VR
 				if (!YaExisteOpcion (optotipoAleatorio)) {
 					optotipos [i] = optotipoAleatorio;
 					AsignarMateriales (opciones[i], optotipoAleatorio);
+					AplicarEscala (opciones [i], DistanciaSimuladaEnum.Escala_400_20, i);
 				} else {
 					// Si la funcion ya existe, se intentara nuevamente
 					i--;
@@ -116,6 +110,39 @@ namespace AgudezaVisual.VR
 			// Material cuando esta siendo observado
 			Material gazedAtMaterial = Resources.Load ("Materials/" + optotipo + "_seleccionado", typeof(Material)) as Material;
 			controller.gazedAtMaterial = gazedAtMaterial;
+		}
+
+		/**
+		 * Define el tamanio del optotipo dependiendo de la distancia que se quiere simular
+		 **/
+		public void AplicarEscala(GameObject optotipo, DistanciaSimuladaEnum distanciaSimulada, int indice) {
+
+			float minutosDeArco;
+			float distanciaReal;
+			float tamanoOptotipo;
+			float tamanoCorregido;
+
+			// Distancia del objeto padre
+			distanciaReal = optotipo.transform.parent.gameObject.transform.position.z;
+			// Calcular los minutos de arco que debe sostener el optotipo a la distancia simulada
+			minutosDeArco = (int)distanciaSimulada / (int)DistanciaSimuladaEnum.Escala_20_20 * MINUTOS_DE_ARCO_20_20;
+			// Tamanio de optotipo sin correcion de area extra
+			tamanoOptotipo = minutosDeArco * distanciaReal / MINUTOS_DE_ARCO_RADIAN;
+			// Tamanio corregido del optotipo que se mostrara en pantalla
+			tamanoCorregido = tamanoOptotipo / TAMANO_AREA_OPTOTIPO * TAMANO_AREA_OPCION;
+			
+			optotipo.transform.localScale = new Vector3 (tamanoCorregido, tamanoCorregido, tamanoCorregido);
+			definirPosicion (optotipo, tamanoCorregido, indice);
+		}
+
+		public void definirPosicion(GameObject optotipo, float tamanoCorregido, int indice) {
+			int cantidadOptotipos = optotipos.Length;
+			float tamanoTotal = tamanoCorregido * cantidadOptotipos;
+			float pivote = 0 - tamanoTotal / 2;
+
+			float posicionX = pivote + (tamanoCorregido * indice);
+			optotipo.transform.position = new Vector3(posicionX, optotipo.transform.position.y, optotipo.transform.position.z);
+
 		}
 	}
 }

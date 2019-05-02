@@ -3,19 +3,18 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VR\OptotipoFactory.cs">
     <Files>
       <File FileName="Assets\Scripts\AdvertenciaController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ConfiguracionController.cs" Line="22" Column="19" />
-      <File FileName="Assets\Scripts\Jugador.cs" Line="16" Column="13" />
-      <File FileName="Assets\Scripts\HomeController.cs" Line="64" Column="3" />
+      <File FileName="Assets\Scripts\ConfiguracionController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Jugador.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HomeController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Configuracion\DificultadEnumerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\VR\OptotipoFactory.cs" Line="69" Column="59" />
-      <File FileName="Assets\Scripts\VR\OptotipoController.cs" Line="48" Column="27" NotebookId="1" />
+      <File FileName="Assets\Scripts\VR\OptotipoFactory.cs" Line="74" Column="65" />
+      <File FileName="Assets\Scripts\VR\OptotipoController.cs" Line="12" Column="36" NotebookId="1" />
       <File FileName="Assets\Scripts\Configuracion\OptotipoEnum.cs" Line="9" Column="26" NotebookId="1" />
+      <File FileName="Assets\Scripts\Configuracion\DistanciaSimuladaEnum.cs" Line="22" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="D:\Documentos\USAC\Tesis\Aplicacion\AgudezaVisual\Assets\Scripts\VR\OptotipoFactory.cs" line="74" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
