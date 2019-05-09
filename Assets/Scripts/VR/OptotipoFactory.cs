@@ -8,17 +8,31 @@ namespace AgudezaVisual.VR
 	public class OptotipoFactory : MonoBehaviour
 	{
 		
-		private OptotipoEnum[] optotipos;
+		/// Minutos de arco que sostiene un optotipo a una distancia de 20 metros
 		private readonly float MINUTOS_DE_ARCO_20_20 = 5f;
+		/// Constante de conversion de minutos de arco a radianes
 		private readonly int MINUTOS_DE_ARCO_RADIAN = 3438;
+		/// Magnitud del area de un optotipo
 		private readonly int TAMANO_AREA_OPTOTIPO = 5;
+		/// Magnitud del optotipo con el area en blanco circundante
 		private readonly int TAMANO_AREA_OPCION = 7;
 
+		/// Arreglo de las opciones disponibles de optotipos
+		private OptotipoEnum[] optotipos;
+
+		/// Lista de planos de la escena en donde se mostraran los optotipos
 		public List<GameObject> opciones;
+
+		public GameObject PistaOptotipo;
 
 		public void Start ()
 		{
+			GenerarNuevasOpciones ();
+		}
+
+		public void GenerarNuevasOpciones() {
 			DefinirOpciones ();
+			DefinirRespuesta ();
 		}
 
 		/**
@@ -70,8 +84,9 @@ namespace AgudezaVisual.VR
 				// Verificar si la opcion aun no existe
 				if (!YaExisteOpcion (optotipoAleatorio)) {
 					optotipos [i] = optotipoAleatorio;
+					AsignarValorOptotipo (opciones [i], optotipoAleatorio);
 					AsignarMateriales (opciones[i], optotipoAleatorio);
-					AplicarEscala (opciones [i], DistanciaSimuladaEnum.Escala_400_20, i);
+					AplicarEscala (opciones [i], Jugador.jugador.partida.distanciaActual, i);
 				} else {
 					// Si la funcion ya existe, se intentara nuevamente
 					i--;
@@ -79,11 +94,10 @@ namespace AgudezaVisual.VR
 				}
 			}
 		}
-
-		/**
-		 * Compara si el OptotipoEnum que recibe como parametro ya 
-		 * existe dentro del arreglo optotipos
-		 */
+			
+		/// <summary>
+		/// Compara si el OptotipoEnum que recibe como parametro ya existe dentro del arreglo optotipos
+		/// </summary>
 		public bool YaExisteOpcion (OptotipoEnum opcion)
 		{
 			for (int i = 0; i < optotipos.Length; i++) {
@@ -93,9 +107,9 @@ namespace AgudezaVisual.VR
 			return false;
 		}
 
-		/**
-		 * Cargar los materiales asociados al  OptotipoEnum y asignarlos al controlador de la opcion
-		 */
+		/// <summary>
+		/// Cargar los materiales asociados al  OptotipoEnum y asignarlos al controlador de la opcion
+		/// </summary>
 		public void AsignarMateriales (GameObject opcion, OptotipoEnum optotipo)
 		{
 			// Obtenemos el controlador y el rederizador
@@ -104,17 +118,21 @@ namespace AgudezaVisual.VR
 
 			// Material cuando no esta siendo observado
 			Material inactiveMaterial = Resources.Load ("Materials/" + optotipo, typeof(Material)) as Material;
-			controller.inactiveMaterial = inactiveMaterial;
 			render.material = inactiveMaterial;
 
 			// Material cuando esta siendo observado
 			Material gazedAtMaterial = Resources.Load ("Materials/" + optotipo + "_seleccionado", typeof(Material)) as Material;
-			controller.gazedAtMaterial = gazedAtMaterial;
+
+			// Si el controlador no es nulo, es una de nuestras opciones disponibles
+			if (controller != null) {
+				controller.inactiveMaterial = inactiveMaterial;
+				controller.gazedAtMaterial = gazedAtMaterial;
+			}
 		}
 
-		/**
-		 * Define el tamanio del optotipo dependiendo de la distancia que se quiere simular
-		 **/
+		/// <summary>
+		/// Define el tamanio del optotipo dependiendo de la distancia que se quiere simular
+		/// </summary>
 		public void AplicarEscala(GameObject optotipo, DistanciaSimuladaEnum distanciaSimulada, int indice) {
 
 			float minutosDeArco;
@@ -132,10 +150,14 @@ namespace AgudezaVisual.VR
 			tamanoCorregido = tamanoOptotipo / TAMANO_AREA_OPTOTIPO * TAMANO_AREA_OPCION;
 			
 			optotipo.transform.localScale = new Vector3 (tamanoCorregido, tamanoCorregido, tamanoCorregido);
-			definirPosicion (optotipo, tamanoCorregido, indice);
+			DefinirPosicion (optotipo, tamanoCorregido, indice);
 		}
 
-		public void definirPosicion(GameObject optotipo, float tamanoCorregido, int indice) {
+		/// <summary>
+		/// Define la posicion espacial que ocupara el objeto dentro de la escena.
+		/// Toma en cuenta el tamaño del optotipo y la posicion que ocupa dentro del conjunto
+		/// </summary>
+		public void DefinirPosicion(GameObject optotipo, float tamanoCorregido, int indice) {
 			int cantidadOptotipos = optotipos.Length;
 			float tamanoTotal = tamanoCorregido * cantidadOptotipos;
 			float pivote = 0 - tamanoTotal / 2;
@@ -143,6 +165,27 @@ namespace AgudezaVisual.VR
 			float posicionX = pivote + (tamanoCorregido * indice);
 			optotipo.transform.position = new Vector3(posicionX, optotipo.transform.position.y, optotipo.transform.position.z);
 
+		}
+
+		/// <summary>
+		/// Asignar el valor del optotipo que representa el objeto en la escena
+		/// </summary>
+		public void AsignarValorOptotipo(GameObject gameObject, OptotipoEnum optotipo) {
+			OptotipoController controller = gameObject.GetComponent<OptotipoController> ();
+			controller.optotypeValue = optotipo;
+		}
+
+		/// <summary>
+		/// Define de manera aleatoria la respuesta en base al conjunto de opciones disponibles
+		/// </summary>
+		public void DefinirRespuesta () {
+			int rangoInferior = 0;
+			int rangoSuperior = optotipos.Length;
+
+			int posicionAleatoria = Random.Range (rangoInferior, rangoSuperior);
+			Debug.Log("RESPUESTA CORRECTA => " + optotipos[posicionAleatoria]);
+			Jugador.jugador.partida.respuestaActual = optotipos[posicionAleatoria];
+			AsignarMateriales (PistaOptotipo, optotipos [posicionAleatoria]);
 		}
 	}
 }

@@ -1,20 +1,34 @@
-﻿namespace AgudezaVisual.VR
+﻿using AgudezaVisual.Configuracion;
+
+namespace AgudezaVisual.VR
 {
 	
-
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.SceneManagement;
 
 	[RequireComponent (typeof(Collider))]
 	public class OptotipoController : MonoBehaviour
 	{
+		/// Constante del nombre de la escena de resultados
+		private readonly string NOMBRE_ESCENA_RESULTADOS = "resultados";
+		
 		/// Listens to controller's input
 		private InputController inputController;
 		/// Indicates if the object is being gazed
 		private bool gazedAt;
+		private GameObject optotipoFactory;
+		/// Sonido de respuesta correcta
+		private AudioClip audioClipRespuestaCorrecta;
+		/// Sonido de respuesta incorrecta
+		private AudioClip audioClipRespuestaEquivocada;
+		// Objeto de tipo AudioSource para reproducir el sonido
+		AudioSource audioSource;
 
 
+		/// Indicates the optotype value being held by the GameObject
+		public OptotipoEnum optotypeValue;
 		public Material inactiveMaterial;
 		public Material gazedAtMaterial;
 
@@ -26,7 +40,11 @@
 		{
 			inputController = new InputController ();
 			render = GetComponent<Renderer> ();
+			audioSource = GetComponent<AudioSource> ();
+			optotipoFactory = GameObject.Find ("OptotipoFactory");
 
+			audioClipRespuestaCorrecta = Resources.Load ("Sounds/respuesta_correcta", typeof(AudioClip)) as AudioClip;
+			audioClipRespuestaEquivocada = Resources.Load ("Sounds/respuesta_incorrecta", typeof(AudioClip)) as AudioClip;
 		}
 	
 		// Update is called once per frame
@@ -55,13 +73,44 @@
 		/// <summary>
 		/// Checks the answer.
 		/// </summary>
-		/// <returns><c>true</c>, if answer was checked, <c>false</c> otherwise.</returns>
 		public void CheckAnswer ()
 		{
-			Debug.Log ("===== checkAnswer =====");
-			Debug.Log (render.material.name);
-			Material material = Resources.Load ("Materials/e_snellen", typeof(Material)) as Material;
-			render.material = material;
+			// Verify that the game still hasn't over
+			if (Jugador.jugador.partida.gameOver) {
+				Debug.LogWarning ("===== GAME OVER =====");
+				SceneManager.LoadScene (NOMBRE_ESCENA_RESULTADOS);
+
+			} else {
+				// If the game isn't over, verify the answer choosen
+				bool EsRespuestaCorrecta = Jugador.jugador.partida.EsRespuestaCorrecta (optotypeValue);
+
+				// Sonido a reproducir en base a la respuesta
+				PlayAnswerAudioClip (EsRespuestaCorrecta);
+
+				// If the game is over -> Show results scene
+				if (Jugador.jugador.partida.gameOver) {
+					SceneManager.LoadScene (NOMBRE_ESCENA_RESULTADOS);
+				}
+				// Else -> Generate new optotypes set
+				else {
+					if (optotipoFactory != null) {
+						OptotipoFactory factory = optotipoFactory.GetComponent<OptotipoFactory> ();
+						factory.GenerarNuevasOpciones ();
+					} else {
+						Debug.LogError ("No se pudo obtener OptotipoFactory");
+					}
+				}
+			}
+
+		}
+
+		public void PlayAnswerAudioClip (bool isCorrect)
+		{
+			if (isCorrect) {
+				audioSource.PlayOneShot (audioClipRespuestaCorrecta);
+			} else {
+				audioSource.PlayOneShot (audioClipRespuestaEquivocada);
+			}
 		}
 
 	}

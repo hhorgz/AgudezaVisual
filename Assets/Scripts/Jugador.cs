@@ -8,6 +8,8 @@ public class Jugador
 
 	public static Jugador jugador = new Jugador ();
 
+	public PartidaController partida = new PartidaController ();
+
 	private string _nombre;
 	private int _edad;
 
