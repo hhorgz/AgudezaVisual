@@ -13,20 +13,25 @@ public class ConfiguracionController : MonoBehaviour {
 	public InputField inputEdad;
 
 	public void setConfiguracionJugador(){
+		// Verificar que los datos de entrada no esten vacios
 		if (string.IsNullOrEmpty (inputNombre.text) ||
 		    string.IsNullOrEmpty (inputEdad.text)) {
 			//Lanzar advertencia
 			Debug.LogWarning("The name must not be empty and the age must be higher than 0");
 			actualizarMensajeAdvertencia ("El nombre no debe de estar vacío ni la edad debe ser menor a cero");
 		} else {
+			// Set datos de jugador
 			Jugador.jugador.setDatos (
 				inputNombre.text,
 				int.Parse (inputEdad.text)
 			);
+			// Crear una nueva partida para el jugador
+			Jugador.jugador.partida = new PartidaController();
 			actualizarMensajeAdvertencia ("Jugador configurado exitosamente");
 		}
 
 		panelAdvertencia.SetActive (true);
+
 		// LOG DEBUG
 		Debug.Log(Jugador.jugador.ToString ());
 	}

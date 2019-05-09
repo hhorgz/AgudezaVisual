@@ -19,7 +19,7 @@ namespace GoogleVR.HelloVR
 	[RequireComponent (typeof(Collider))]
 	public class ObjectController : MonoBehaviour
 	{
-		private InputController inputController;
+//		private InputController inputController;
 
 		private Vector3 startingPosition;
 		Renderer renderer;
@@ -31,7 +31,7 @@ namespace GoogleVR.HelloVR
 
 		void Start ()
 		{
-			inputController = new InputController();
+//			inputController = new InputController();
 			startingPosition = transform.localPosition;
 			renderer = GetComponent<Renderer> ();
 			SetGazedAt (false);
@@ -40,9 +40,9 @@ namespace GoogleVR.HelloVR
 		void Update(){
 			if (this.gazedAt) {
 				Debug.Log ("Is gazed");
-				if (inputController.IsActionButtonPressed) {
+//				if (inputController.IsActionButtonPressed) {
 					TeleportRandomly ();
-				}
+//				}
 			}
 		}
 

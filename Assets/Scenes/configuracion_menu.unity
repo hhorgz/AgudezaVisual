@@ -1787,6 +1787,10 @@ Prefab:
       propertyPath: panelFadeout
       value: 
       objectReference: {fileID: 835382458}
+    - target: {fileID: 1238844242774674, guid: e7deeee225166fc408ae4c3c87556620, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7deeee225166fc408ae4c3c87556620, type: 2}
   m_IsPrefabParent: 0

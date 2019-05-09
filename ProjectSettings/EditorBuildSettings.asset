@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/configuracion_menu.unity
     guid: bc7a2bc2e27d75c46ab900601ef1938b
+  - enabled: 1
+    path: Assets/Scenes/evaluacion_vr.unity
+    guid: 5d785e905d23699439e7913046528944
+  - enabled: 1
+    path: Assets/Scenes/resultados.unity
+    guid: 6125899619ce5ee4bba9e6bcc7579464
