@@ -73,8 +73,10 @@ namespace AgudezaVisual.VR
 			// Definir la cantidad de opciones en base a la dificultad
 			if (Jugador.jugador.Dificultad == DificultadEnumerator.OPTOTIPOS_LEIA) {
 				optotipos = new OptotipoEnum[4];
+				opciones [opciones.Count - 1].SetActive (false);
 			} else if (Jugador.jugador.Dificultad == DificultadEnumerator.OPTOTIPOS_SNELLEN) {
 				optotipos = new OptotipoEnum[5];
+				opciones [opciones.Count - 1].SetActive (true);
 			}
 
 			// Obtener un valor aleatorio  para cada opcion

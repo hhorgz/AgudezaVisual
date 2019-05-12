@@ -14,8 +14,8 @@ public class Jugador
 	private int _edad;
 
 	public Jugador () {
-		_nombre = "dummy";
-		_edad = 10;
+		_nombre = "";
+		_edad = 0;
 	}
 
 	public string Nombre {
