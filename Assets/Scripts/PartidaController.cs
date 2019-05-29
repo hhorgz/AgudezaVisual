@@ -32,6 +32,8 @@ public class PartidaController : MonoBehaviour
 	public DistanciaSimuladaEnum distanciaActual;
 	/// Arreglo para llevar el control de los resultados de la evaluacion actual
 	public bool[] evaluacionActual;
+	/// Resumen general de la evaluacion
+	public string resumen;
 
 	public bool gameOver;
 
@@ -50,6 +52,7 @@ public class PartidaController : MonoBehaviour
 		distanciaActual = DistanciaSimuladaEnum.Escala_400_20;
 		evaluacionActual = evaluacion_400_20;
 		gameOver = false;
+		resumen = "400/20";
 
 	}
 
@@ -98,44 +101,65 @@ public class PartidaController : MonoBehaviour
 			evaluacionActual = evaluacion_200_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_200_20:
+			resumen = "200/20";
 			evaluacion_100_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_100_20;
 			evaluacionActual = evaluacion_100_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_100_20:
+			resumen = "100/20";
 			evaluacion_70_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_70_20;
 			evaluacionActual = evaluacion_70_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_70_20:
+			resumen = "70/20";
 			evaluacion_50_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_50_20;
 			evaluacionActual = evaluacion_50_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_50_20:
+			resumen = "50/20";
 			evaluacion_40_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_40_20;
 			evaluacionActual = evaluacion_40_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_40_20:
+			resumen = "40/20";
 			evaluacion_30_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_30_20;
 			evaluacionActual = evaluacion_30_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_30_20:
+			resumen = "30/20";
 			evaluacion_25_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_25_20;
 			evaluacionActual = evaluacion_25_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_25_20:
+			resumen = "25/20";
 			evaluacion_20_20 = new bool[5];
 			distanciaActual = DistanciaSimuladaEnum.Escala_20_20;
 			evaluacionActual = evaluacion_20_20;
 			break;
 		case DistanciaSimuladaEnum.Escala_20_20:
+			resumen = "20/20";
 			gameOver = true;
 			break;
 		}
+	}
+
+	public static int contarAciertos(bool[] evaluacion) {
+		int aciertos = 0;
+		if(evaluacion != null)  {
+			for (int i = 0; i < evaluacion.Length; i++) {
+				if (evaluacion [i]) {
+					aciertos++;
+				}
+			}
+		}
+
+		return aciertos;
 	}
 
 }
