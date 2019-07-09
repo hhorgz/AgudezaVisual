@@ -163,6 +163,7 @@
      <Compile Include="Assets\Scripts\Jugador.cs" />
      <Compile Include="Assets\Scripts\PartidaController.cs" />
      <Compile Include="Assets\Scripts\SwitchTo2DController.cs" />
+     <Compile Include="Assets\Scripts\UI\InstruccionesController.cs" />
      <Compile Include="Assets\Scripts\UI\ResultadosController.cs" />
      <Compile Include="Assets\Scripts\VR\InputController.cs" />
      <Compile Include="Assets\Scripts\VR\OptotipoController.cs" />

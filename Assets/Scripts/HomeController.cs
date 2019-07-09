@@ -37,7 +37,7 @@ public class HomeController : MonoBehaviour {
 		Debug.Log ("===== DATOS JUGADOR =====");
 		Debug.Log (Jugador.jugador.ToString ());
 
-		if (escena.Equals ("evaluacion_vr")) {
+		if (escena.Equals ("instrucciones")) {
 			if (!Jugador.jugador.IsEmpty) {
 //				StartCoroutine (SwtichToVR());
 				SceneManager.LoadScene (escena);
